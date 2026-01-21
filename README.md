@@ -48,11 +48,12 @@ This project demonstrates a multi-level Interactive Voice Response (IVR) system 
 plivo_ivr_demo/
 ├── app.py
 ├── templates/
-│ └── index.html
+│   └── index.html
 ├── requirements.txt
 ├── README.md
 ├── .gitignore
-└── .env (not committed)
+└── .env   (not committed)
+
 
 ---
 
@@ -63,5 +64,6 @@ plivo_ivr_demo/
 ```bash
 git clone https://github.com/SwarLodaya/plivo-ivr-demo.git
 cd plivo_ivr_demo
+
 
 
