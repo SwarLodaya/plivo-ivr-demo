@@ -61,5 +61,6 @@ plivo_ivr_demo/
 ### 1. Clone the repository
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/SwarLodaya/plivo-ivr-demo.git
 cd plivo_ivr_demo
+
