@@ -24,7 +24,7 @@ This project demonstrates a multi-level Interactive Voice Response (IVR) system 
 - Flask
 - Plivo Voice API
 - Plivo XML
-- HTML, CSS, JavaScript
+- HTML
 - ngrok (for public webhook exposure)
 
 ---
@@ -63,4 +63,5 @@ plivo_ivr_demo/
 ```bash
 git clone https://github.com/SwarLodaya/plivo-ivr-demo.git
 cd plivo_ivr_demo
+
 
