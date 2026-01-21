@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Plivo IVR Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #f7f9fc, #eef2f7);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 420px;
+            margin: 80px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+        }
+
+        h1 {
+            font-size: 22px;
+            margin-bottom: 8px;
+            color: #1f2937;
+        }
+
+        p.subtitle {
+            color: #6b7280;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 6px;
+            color: #374151;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #d1d5db;
+            font-size: 14px;
+            outline: none;
+            margin-bottom: 16px;
+        }
+
+        input:focus {
+            border-color: #6366f1;
+            box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.1);
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #6366f1;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        button:hover {
+            background: #4f46e5;
+        }
+
+        .status {
+            margin-top: 18px;
+            font-size: 14px;
+            color: #374151;
+            background: #f9fafb;
+            padding: 12px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #9ca3af;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Outbound IVR Call Demo</h1>
+    <p class="subtitle">Trigger a multi-level IVR call using Plivo APIs</p>
+
+    <form id="callForm">
+        <label for="phone">Phone Number</label>
+        <input type="text" id="phone" placeholder="e.g. 9198XXXXXXXX" required>
+
+        <button type="submit">Initiate Call</button>
+    </form>
+
+    <div id="status" class="status"></div>
+
+    <div class="footer">
+        Powered by Plivo Voice API
+    </div>
+</div>
+
+<script>
+    document.getElementById("callForm").addEventListener("submit", async function(e) {
+        e.preventDefault();
+
+        const phone = document.getElementById("phone").value;
+        const statusDiv = document.getElementById("status");
+
+        statusDiv.style.display = "block";
+        statusDiv.innerText = "Initiating call...";
+
+        try {
+            const response = await fetch("/call", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ to: phone })
+            });
+
+            const result = await response.json();
+            statusDiv.innerText = "Call initiated successfully.\nCall UUID: " + result.call_uuid;
+
+        } catch (err) {
+            statusDiv.innerText = "Failed to initiate call. Please try again.";
+        }
+    });
+</script>
+
+</body>
+</html>
